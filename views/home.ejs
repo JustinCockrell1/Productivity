@@ -1,0 +1,39 @@
+<%- include("header") -%>
+
+<div class="container">
+
+<div class="main">
+
+    <div class="current-task">
+        <h1 id="current-task"><%=currentTask.task%></h1>
+        <div class="timer">
+            00:00:00
+        </div>
+       <div id="last-task" hidden><%=lastTask%></div>
+       <div id="current-timestamp" hidden><%=currentTask.timestamp%></div>
+        
+    </div>
+
+<form action="/" method="post" id="task-form">
+    <div class="task-selector">
+    <select name="task-selector" id="task-selector">
+        <option value="default">Quick task</option>
+        <option value="python">Python</option>
+        <option value="chess">Chess</option>
+        <option value="break">Break</option>
+ 
+    </select>
+    </div>
+    <div class="submit">
+        <input type="text" name="task" id="task" placeholder="new task">
+        <button type="submit">Start Task</button>
+        <button class="break-button">Break</button>
+    </div>
+</form>
+
+</div>
+
+</div>
+
+<%- include("footer") -%>
+    
