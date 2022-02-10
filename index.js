@@ -13,11 +13,14 @@ let tasks = [];
 let lastTask = null;
 let currentTask = {task:"none", timestamp:0};
 
+const fileName = "data.json";
+
 app.get("/",(req, res)=>{
 
     if(tasks.length==0) {
-    fs.readFile('temp.json', (err, data)=>{
+    fs.readFile(fileName, (err, data)=>{
         tasks = JSON.parse(data);
+        if(tasks.length>0)
         currentTask = tasks[tasks.length-1];
         res.render("home",{currentTask:currentTask, lastTask:lastTask});
     });
@@ -38,7 +41,7 @@ app.post("/", (req,res)=>{
     console.log(tasks);
     lastTask = currentTask.task;
     currentTask = task;
-    fs.writeFile("temp.json", JSON.stringify(tasks),"utf-8", ()=>{});
+    fs.writeFile(fileName, JSON.stringify(tasks),"utf-8", ()=>{});
     res.redirect("/");
 });
 
